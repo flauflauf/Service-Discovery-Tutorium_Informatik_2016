@@ -16,15 +16,15 @@ public class FilmprogrammClientProxy {
 	private static Gson gson = new Gson();
 
 	public List<Vorführung> getVorführungen() throws UnirestException, NamingException {
-		List<Vorführung> freeSeats = null;
+		List<Vorführung> vorführungen = null;
 
-		URI uri = URI.create("http://localhost:50000/vorführungen");
+		URI uri = URI.create("http://192.168.0.105:50000/vorführungen");
 
 		HttpResponse<String> response = Unirest.get(uri.toString()).asString();
 		Type seatListType = new TypeToken<List<Vorführung>>() {
 		}.getType();
-		freeSeats = gson.fromJson(response.getBody(), seatListType);
+		vorführungen = gson.fromJson(response.getBody(), seatListType);
 
-		return freeSeats;
+		return vorführungen;
 	}
 }
